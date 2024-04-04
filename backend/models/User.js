@@ -29,11 +29,11 @@ var UserSchema = new mongoose.Schema(
       enum: ["user", "admin"],
       default: "user"
     },
-    isVerified: [{ type: mongoose.Schema.Types.Boolean, ref: "User" }],
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     hash: String,
-    salt: String
+    salt: String,
+    isVerified: { type: Boolean, default: false }
   },
   { timestamps: true }
 );
@@ -84,10 +84,10 @@ UserSchema.methods.toProfileJSONFor = function(user) {
   return {
     username: this.username,
     bio: this.bio,
-    isVerified: this.isVerified ? true : false,
     image:
       this.image || "https://static.productionready.io/images/smiley-cyrus.jpg",
-    following: user ? user.isFollowing(this._id) : false
+    following: user ? user.isFollowing(this._id) : false,
+    isVerified: this.isVerified
   };
 };
 
