@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ItemPreview = (props) => {
   const item = props.item;
+  const isVerified = item.seller.isVerified;
 
   const handleClick = (ev) => {
     ev.preventDefault();
@@ -57,6 +58,7 @@ const ItemPreview = (props) => {
               className="user-pic rounded-circle pr-1"
             />
           </Link>
+          {isVerified &&
           <div className="d-flex flex-row align-items-left pt-2">
           <img
             src={badge} 
@@ -64,6 +66,7 @@ const ItemPreview = (props) => {
           />
           <p className="card-text crop-text-3">TOP SELLER</p>
           </div>
+          }
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
           </button>
