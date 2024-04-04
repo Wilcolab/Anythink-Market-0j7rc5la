@@ -85,7 +85,7 @@ UserSchema.methods.toProfileJSONFor = function(user) {
   return {
     username: this.username,
     bio: this.bio,
-    isVerified: this.isVerified,
+    isVerified: user ? user.isVerified(this._id) : false,
     image:
       this.image || "https://static.productionready.io/images/smiley-cyrus.jpg",
     following: user ? user.isFollowing(this._id) : false
