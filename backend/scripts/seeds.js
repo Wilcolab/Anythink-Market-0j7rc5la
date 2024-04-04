@@ -25,7 +25,7 @@ async function main() {
   const notVerifiedUser = new User({
       username: 'notVerifiedUser',
       email: 'notVerifiedUser@gmail.com',
-      isVerified: false,
+      isVerified: true,
     }
   );
   await notVerifiedUser.save();
