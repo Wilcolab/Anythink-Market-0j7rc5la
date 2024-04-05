@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import agent from "../agent";
 import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
-import badge from "../imgs/verified_seller.svg";
 
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
@@ -20,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ItemPreview = (props) => {
   const item = props.item;
-  const isVerified = item.seller.isVerified;
+  const isVerified = item.seller.isVerified; // Check if seller is verified
 
   const handleClick = (ev) => {
     ev.preventDefault();
@@ -55,17 +54,16 @@ const ItemPreview = (props) => {
               alt={item.seller.username}
               className="user-pic rounded-circle pr-1"
             />
-          </Link>
-          {isVerified && (
-            <div className="d-flex flex-row align-items-center pt-2">
+            {/* Conditionally render verified seller image and text */}
+            {isVerified && (
               <img
-                src={badge}
-                alt="Top Seller"
-                className="verified-badge" // Ensure class name matches
+                src="../src/verified_seller.svg"
+                alt="Verified Seller"
+                className="verified-seller-icon"
               />
-              <p className="card-text crop-text-3 ml-2">TOP SELLER</p>
-            </div>
-          )}
+            )}
+            {isVerified && <span className="verified-seller-text">TOP SELLER</span>}
+          </Link>
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
           </button>
