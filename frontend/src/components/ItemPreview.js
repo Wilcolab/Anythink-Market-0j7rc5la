@@ -58,7 +58,11 @@ const ItemPreview = (props) => {
           </Link>
           {isVerified && (
             <div className="d-flex flex-row align-items-center pt-2">
-              <img src={badge} alt="Top Seller" className="verified-badge" />
+              <img
+                src={badge}
+                alt="Top Seller"
+                className="verified-badge" // Ensure class name matches
+              />
               <p className="card-text crop-text-3 ml-2">TOP SELLER</p>
             </div>
           )}
