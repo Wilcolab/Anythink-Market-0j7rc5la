@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
 import badge from "../imgs/verified_seller.svg";
 
-
-
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
     dispatch({
@@ -58,15 +56,12 @@ const ItemPreview = (props) => {
               className="user-pic rounded-circle pr-1"
             />
           </Link>
-          {isVerified &&
-          <div className="d-flex flex-row align-items-left pt-2">
-          <img
-            src={badge} 
-            alt="Top Seller"
-          />
-          <p className="card-text crop-text-3">TOP SELLER</p>
-          </div>
-          }
+          {isVerified && (
+            <div className="d-flex flex-row align-items-center pt-2">
+              <img src={badge} alt="Top Seller" className="verified-badge" />
+              <p className="card-text crop-text-3 ml-2">TOP SELLER</p>
+            </div>
+          )}
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
           </button>
