@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ItemPreview = (props) => {
   const item = props.item;
+  const isVerified = item.seller.isVerified; // Check if seller is verified
 
   const handleClick = (ev) => {
     ev.preventDefault();
@@ -53,6 +54,15 @@ const ItemPreview = (props) => {
               alt={item.seller.username}
               className="user-pic rounded-circle pr-1"
             />
+            {/* Conditionally render verified seller image and text */}
+            {isVerified && (
+              <img
+                src="../src/verified_seller.svg"
+                alt="Verified Seller"
+                className="verified-seller-icon"
+              />
+            )}
+            {isVerified && <span className="verified-seller-text">TOP SELLER</span>}
           </Link>
           <button className="btn btn-outline-secondary" onClick={handleClick}>
             <i className="ion-heart"></i> {item.favoritesCount}
